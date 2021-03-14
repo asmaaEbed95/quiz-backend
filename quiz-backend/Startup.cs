@@ -6,10 +6,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using quiz_backend.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace quiz_backend
 {
@@ -31,6 +33,10 @@ namespace quiz_backend
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
+
+            services.AddDbContext<QuizContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
         }
