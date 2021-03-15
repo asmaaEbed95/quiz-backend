@@ -25,6 +25,13 @@ namespace quiz_backend.Controllers
             return _context.Quizzes.ToList();
         }
 
+        //to specify the route from the front end
+        [HttpGet("all")]
+        public IEnumerable<Quiz> GetAllQuizzes()
+        {
+            return _context.Quizzes.ToList();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Quiz quiz)
         {
